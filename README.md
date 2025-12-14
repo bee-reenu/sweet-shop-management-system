@@ -1,84 +1,77 @@
-🍬 Sweet Shop Management System
+# Sweet Shop Management System
 
 A full-stack Sweet Shop Management System built as part of a TDD-based kata to demonstrate backend API design, authentication, database integration, frontend development, testing practices, and modern development workflows.
 
-This project aims to simulate a real-world inventory and sales management system for a sweet shop, including user authentication, product management, and inventory operations.
+This project simulates a real-world inventory and sales management system for a sweet shop, including user authentication, product management, and inventory operations.
 
-🚀 Project Overview
+---
+
+## Project Overview
 
 The Sweet Shop Management System allows users to:
 
-Register and log in securely using JWT authentication
-
-View a list of available sweets
-
-Search sweets by name, category, or price range
-
-Purchase sweets and automatically update stock
-
-(Admin only) Add, update, restock, or delete sweets
+- Register and log in securely using JWT authentication
+- View a list of available sweets
+- Search sweets by name, category, or price range
+- Purchase sweets and automatically update stock
+- Admin users can add, update, restock, or delete sweets
 
 The project follows RESTful API principles, clean coding practices, and test-driven development (TDD).
 
-🛠️ Tech Stack
-Backend
+---
 
-Node.js
+## Tech Stack
 
-Database: PostgreSQL 
+### Backend
+- Node.js
+- Database: PostgreSQL
 
-Frontend
+### Frontend
+- React
+- Axios
+- React Router
 
-React
+### Testing
+- Jest
+- Supertest
 
-Axios
+### Tools
+- Git
+- GitHub
+- AI-assisted development tools
 
-React Router
+---
 
-Testing
+## API Endpoints
 
-Jest
+### Authentication
+- POST /api/auth/register
+- POST /api/auth/login
 
-Supertest
+### Sweets (Protected)
+- POST /api/sweets
+- GET /api/sweets
+- GET /api/sweets/search
+- PUT /api/sweets/:id
+- DELETE /api/sweets/:id (Admin only)
 
-Tools
+### Inventory (Protected)
+- POST /api/sweets/:id/purchase
+- POST /api/sweets/:id/restock (Admin only)
 
-Git & GitHub
+---
 
-AI-assisted development tools (details below)
+## How to Run Locally
 
-📂 API Endpoints
-Authentication
-
-POST /api/auth/register
-
-POST /api/auth/login
-
-Sweets (Protected)
-
-POST /api/sweets
-
-GET /api/sweets
-
-GET /api/sweets/search
-
-PUT /api/sweets/:id
-
-DELETE /api/sweets/:id (Admin only)
-
-Inventory (Protected)
-
-POST /api/sweets/:id/purchase
-
-POST /api/sweets/:id/restock (Admin only)
-
-▶️ How to Run Locally
-Backend
+### Backend
+```bash
 cd backend
 npm install
 npm run dev
 
-Frontend
+
+### Frontend
+```bash
 cd frontend
 npm install
 npm start
