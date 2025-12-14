@@ -1,52 +1,49 @@
 import { useState } from "react";
-import api from "../api";
 import { useNavigate } from "react-router-dom";
+import api from "../api";
 
 export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();   // <-- ADD THIS
+  const navigate = useNavigate();
 
- const handleLogin = async () => {
-  try {
-    const res = await api.post("/auth/login", {
-      username,
-      password,
-    });
+  const handleLogin = async (e) => {
+    e.preventDefault(); // ⬅ Prevent page refresh
 
-    // ⭐ FIX — SAVE TOKEN
-    localStorage.setItem("token", res.data.token);
+    try {
+      const res = await api.post("/auth/login", { username, password });
 
-    alert("LOGIN SUCCESS");
-    console.log(res.data);
+      localStorage.setItem("token", res.data.token);
 
-    navigate("/");  // redirect
-  } catch (err) {
-    console.error("LOGIN ERROR:", err.response?.data || err.message);
-    alert("Login failed: " + (err.response?.data?.error || err.message));
-  }
-};
+      alert("LOGIN SUCCESS");
+
+      navigate("/"); // ⬅ Redirect to dashboard
+    } catch (err) {
+      console.error(err.response?.data || err.message);
+      alert("Login failed");
+    }
+  };
 
   return (
     <div style={{ padding: 40 }}>
       <h2>Login</h2>
 
-      <input
-        placeholder="Username"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-      />
-      <br /><br />
+      <form onSubmit={handleLogin}>
+        <input
+          placeholder="Username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        /><br /><br />
 
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <br /><br />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        /><br /><br />
 
-      <button onClick={handleLogin}>Login</button>
+        <button type="submit">Login</button>
+      </form>
     </div>
   );
 }

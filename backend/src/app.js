@@ -1,14 +1,19 @@
-const express = require("express");
-const app = express();
+import { Routes, Route, Navigate } from "react-router-dom";
+import Login from "./pages/Login";
+import Dashboard from "./pages/Dashboard";
 
-app.use(express.json());
+export default function App() {
+  const token = localStorage.getItem("token");
 
-// Routes
-app.use("/api/auth", require("./routes/auth"));
-app.use("/api/sweets", require("./routes/sweets"));
+  return (
+    <Routes>
+      <Route path="/login" element={<Login />} />
 
-app.get("/", (req, res) => {
-  res.send("API running");
-});
-
-module.exports = app;
+      {/* PROTECTED ROUTE */}
+      <Route
+        path="/"
+        element={token ? <Dashboard /> : <Navigate to="/login" />}
+      />
+    </Routes>
+  );
+}
