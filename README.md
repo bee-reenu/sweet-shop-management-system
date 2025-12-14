@@ -64,7 +64,7 @@ The project follows RESTful API principles, clean coding practices, and test-dri
 ## How to Run Locally
 
 ### Backend
-```bash
+
 cd backend
 npm install
 npm run dev
